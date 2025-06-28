@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Son y Sazón - Café Bar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #E63946; /* Rojo moderno */
+            --secondary-color: #F1FAEE; /* Blanco casi puro */
+            --accent-color: #1D3557; /* Azul oscuro para contraste */
+            --text-color: #333333; /* Texto oscuro */
+            --light-gray: #F8F9FA; /* Fondo gris claro */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            color: var(--text-color);
+        }
+        
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary-color) !important;
+            letter-spacing: -1px;
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+        
+        .navbar-nav .nav-link.active:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('son_y_sazon.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .hero-section h1 {
+            font-weight: 800;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .product-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(230, 57, 70, 0.15);
+        }
+        
+        .product-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .product-body {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .price {
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin: 10px 0;
+        }
+        
+        .category-title {
+            color: var(--primary-color);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            display: inline-block;
+        }
+        
+        .category-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background-color: var(--primary-color);
+            transform: translateX(50%);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 50px 0 30px;
+            margin-top: 80px;
+        }
+        
+        footer h5 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        footer a {
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 12px 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #C1121F;
+            border-color: #C1121F;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 57, 70, 0.3);
+        }
+        
+        .section {
+            padding: 60px 0;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .divider {
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 30px 0;
+        }
+        
+        .badge-trending {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50px;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        #micheladas .product-card:hover {
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-cocktail me-2"></i>SON Y SAZÓN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#licores">Licores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cervezas">Cervezas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#micheladas">Micheladas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#bebidas">Bebidas</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary btn-sm" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="inicio">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">SON Y SAZÓN</h1>
+            <p class="lead mb-5">El lugar donde cada trago es una experiencia y cada noche una historia</p>
+            <a href="#menu" class="btn btn-primary btn-lg px-4">VER MENÚ</a>
+        </div>
+    </section>
+
+    <!-- Productos -->
+    <section class="container section" id="menu">
+        <!-- Licores -->
+        <div class="row mb-5" id="licores">
+            <div class="col-12 text-center">
+                <h2 class="category-title"><i class="fas fa-glass-whiskey me-2"></i>Licores Premium</h2>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Aguardiente - Media
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$50.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Aguardiente - Litro
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$100.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Ron Viejo de Caldas - Media
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$55.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Ron Viejo de Caldas - Botella
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$80.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="badge-trending"></div>
+                    <div class="product-header">
+                        Carta de Oro
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$140.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Buchanan's
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$270.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Old Parr
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$250.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Smirnoff
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$10.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cervezas -->
+        <div class="row mb-5" id="cervezas">
+            <div class="col-12 text-center">
+                <h2 class="category-title"><i class="fas fa-beer me-2"></i>Cervezas Frías</h2>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Cerveza Nacional
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$5.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="badge-trending"></div>
+                    <div class="product-header">
+                        Costeñita
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$4.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Corona
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$10.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Coronita
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$5.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Micheladas -->
+        <div class="row mb-5" id="micheladas">
+            <div class="col-12 text-center">
+                <h2 class="category-title"><i class="fas fa-glass-cheers me-2"></i>Micheladas</h2>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="badge-trending"></div>
+                    <div class="product-header">
+                        Michelada Cerveza Nacional/Coronita
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$7.000</p>
+                        <small class="text-muted">Cerveza nacional o coronita con limón y salsa</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Michelada Corona
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$12.000</p>
+                        <small class="text-muted">Corona con limón y sal</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Michelada Gaseosa 4 y Soda
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$6.000</p>
+                        <small class="text-muted">Refrescante alternativa sin alcohol</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Otras Bebidas -->
+        <div class="row" id="bebidas">
+            <div class="col-12 text-center">
+                <h2 class="category-title"><i class="fas fa-bottle-water me-2"></i>Bebidas & Más</h2>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Mr. Tee
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$5.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Hit
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$5.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Gaseosa
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$4.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="badge-trending"></div>
+                    <div class="product-header">
+                        Monster
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$12.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Electrolit
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$12.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Spedmax
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$4.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Vive 100
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$4.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Amper
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$5.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Gatorade
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$6.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Tutifruti
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$4.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Agua 600ml
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$3.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6">
+                <div class="product-card">
+                    <div class="product-header">
+                        Agua 300ml
+                    </div>
+                    <div class="product-body">
+                        <p class="price">$1.500</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>HORARIO</h5>
+                    <p>Sabado y Domingo de 09:30 am hasta 4:50 am<br></p>
+                    <p>Lunes de 09:30 am hasta 3:00 am<br></p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>CONTÁCTANOS</h5>
+                    <p><i class="fas fa-phone me-2"></i>+57 313 390 3791</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Parque Principal del Municipio de Anzá Antioquia</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>SÍGUENOS</h5>
+                    <a href="https://wa.me/573133903791" class="social-icon me-2" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 <strong>SON Y SAZÓN - ALEJANDRO VELASQUEZ</strong></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling para los enlaces del navbar
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Cambiar clase active en el navbar al hacer scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        
+        // Animación para los productos al aparecer
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
